@@ -1,0 +1,12 @@
+#ifndef GEODESICDIS_GLOBAL_H
+#define GEODESICDIS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(GEODESICDIS_LIBRARY)
+#  define GEODESICDIS_EXPORT Q_DECL_EXPORT
+#else
+#  define GEODESICDIS_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // GEODESICDIS_GLOBAL_H
