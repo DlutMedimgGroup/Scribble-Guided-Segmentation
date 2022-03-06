@@ -2,7 +2,7 @@
 
 To alleviate the high demand of human annotation for training medical image segmentation networks, we introduce human guidance into the learning process through a scribble-supervised training method without whole-image labeling. The segmentation network is initially trained with a small amount of fully-annotated data and then used to produce pseudo labels for many un-annotated data. Human supervisors draw scribbles at the locations of incorrect pseudo labels. The scribbles are converted into full pseudo label maps using a geodesic transform method. A confidence map of the pseudo labels is also generated according to the inter-pixel geodesic distance and the network output probability. Through an iterative process, the network model and the pseudo label maps are optimized alternately, while human proofreading is only needed in the first iteration.
 
-*All example data and trained models can be downloaded here ``. In the following, 'example_data' is used to refer to the data downloaded here. In order to use this data, 'Task03_Liver' in the [Medical Segmentation Decathlon](http://medicaldecathlon.com/) dataset also needs to be downloaded.*
+*All example data and trained models can be downloaded here `https://1drv.ms/u/s!AiAogjEIFaXOgdwLuYMAp72Du8m9FQ?e=kZTKWe`. In the following, 'example_data' is used to refer to the data downloaded here. In order to use this data, 'Task03_Liver' in the [Medical Segmentation Decathlon](http://medicaldecathlon.com/) dataset also needs to be downloaded.*
 
 ## Table of Contents
 - [Scribble-Guided-Segmentation](#scribble-guided-segmentation)
@@ -78,6 +78,9 @@ To train the preliminary network, run the following command in path `./nnunet/nn
 ```
 python run_training_geodesic_config.py -c geodesic_dis/geodesic_iteration_311
 ```
+
+After the training is completed, the model with the name `model_best.model` will be saved in `nnUNet_trained_models/nnUNet/3d_fullres/Scribble311_Liver/nnUNetTrainerV2_geodisic__nnUNetPlansv2.1_geodesic_311/fold_0`. The fune-tuned model example is given in `example_data/models/Fine-tuned/`
+
 To run the inference for test data and test data, run the following command in path `./nnunet/nnunet/inference`. Before running, change `input_folder` and `output_folder` in `./nnunet/nnunet/Config_files/geodesic_dis/geodesic_iteration_311` to the path of `example_data/inference/input_test` and `example_data/inference/output_test_large`, respectively.
 ```
 python predict_simple_geodesic_config.py -c geodesic_dis/geodesic_iteration_311
